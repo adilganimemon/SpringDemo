@@ -3,10 +3,25 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="triangle" class="org.koushik.javabrains.Triangle">
-        <constructor-arg type="java.lang.String" value="Equilateral"/>
-        <constructor-arg type="int" value="20" />
-        <!--<property name="type" value="Equilateral" />-->
+    <bean id="triangle" class="org.koushik.javabrains.Triangle" autowire="byName">
+
     </bean>
+
+    <bean id="pointA" class="org.koushik.javabrains.Point">
+        <property name="x" value="0"/>
+        <property name="y" value="0"/>
+    </bean>
+
+    <bean id="pointB" class="org.koushik.javabrains.Point">
+        <property name="x" value="-20"/>
+        <property name="y" value="0"/>
+    </bean>
+
+    <bean id="pointC" class="org.koushik.javabrains.Point">
+        <property name="x" value="20"/>
+        <property name="y" value="0"/>
+    </bean>
+
+    <alias name="triangle" alias="triangle-alias"/>
 
 </beans>

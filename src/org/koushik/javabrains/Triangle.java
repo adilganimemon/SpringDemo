@@ -1,40 +1,54 @@
 package org.koushik.javabrains;
 
-public class Triangle {
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
-    private String type;
-    private int height;
+import java.util.List;
 
-    // Constructor
-    public Triangle(String type) {
-        this.type = type;
-    }
-    public Triangle(int height) {
-        this.height = height;
-    }
-    public Triangle(String type, int height) {
-        this.type = type;
-        this.height = height;
-    }
+public class Triangle implements ApplicationContextAware, BeanNameAware {
+
+    private Point pointA, pointB, pointC;
+
+    private ApplicationContext context;
 
     // Getters
-    public String getType() {
-        return type;
+    public Point getPointA() {
+        return pointA;
     }
-    public int getHeight() {
-        return height;
+    public Point getPointB() {
+        return pointB;
+    }
+    public Point getPointC() {
+        return pointC;
     }
 
     // Setters
-    public void setType(String type) {
-        this.type = type;
+    public void setPointA(Point pointA) {
+        this.pointA = pointA;
     }
-    public void setHeight(int height) {
-        this.height = height;
+    public void setPointB(Point pointB) {
+        this.pointB = pointB;
     }
-
+    public void setPointC(Point pointC) {
+        this.pointC = pointC;
+    }
 
     public void draw() {
-        System.out.println(getType() + " Triangle Drawn of height: " + getHeight());
+        System.out.println("Point A = (" + getPointA().getX() + ", " + getPointA().getY() + ")");
+        System.out.println("Point B = (" + getPointB().getX() + ", " + getPointB().getY() + ")");
+        System.out.println("Point C = (" + getPointC().getX() + ", " + getPointC().getY() + ")");
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
+        this.context = context;
+
+    }
+
+    @Override
+    public void setBeanName(String beanName) {
+        System.out.println("Bean name is: " + beanName);
     }
 }
